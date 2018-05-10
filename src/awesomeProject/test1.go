@@ -3,18 +3,22 @@ package main
 import "fmt"
 
 func main() {
-	numbers := []int{0, 1, 2, 3, 4, 5, 6, 7, 8}
-	printSlice(numbers)
-	fmt.Println("numbers == ", numbers)
-	fmt.Println("numbers[1:4]==", numbers[1:4])
-	fmt.Println("numbers[:3]==", numbers[:3])
-	fmt.Println("numbers[4:]==", numbers[4:])
-	number2 := numbers[:2]
-	printSlice(number2)
-	number3 := numbers[2:5]
-	printSlice(number3)
-}
-
-func printSlice(x []int) {
-	fmt.Printf("len=%d cap=%d slice=%v\n", len(x), cap(x), x)
+	nums := []int{2, 3, 4}
+	sum := 0
+	for _, num := range nums {
+		sum += num
+	}
+	fmt.Println("sum", sum)
+	for i, num := range nums {
+		if num == 4 {
+			fmt.Println("index", i)
+		}
+	}
+	kvs := map[string]string{"a": "apple", "b": "banana"}
+	for k, v := range kvs {
+		fmt.Printf("%s => %s ;", k, v)
+	}
+	for i, c := range "go" {
+		fmt.Println(i, c)
+	}
 }
