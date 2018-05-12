@@ -1,8 +1,8 @@
-package basics
+package main
 
 import "fmt"
 
-func main3() {
+func main() {
 	var countryCapitalMap map[string]string
 	countryCapitalMap = make(map[string]string)
 

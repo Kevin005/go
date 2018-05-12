@@ -1,4 +1,4 @@
-package basics
+package main
 
 import "net/http"
 
@@ -8,7 +8,7 @@ func (h *helloHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("hello world"))
 }
 
-func main4() {
+func main() {
 	http.Handle("/", &helloHandler{})
 	http.ListenAndServe(":9090", nil)
 }
