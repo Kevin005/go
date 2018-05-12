@@ -1,4 +1,4 @@
-package main
+package basics
 
 import "fmt"
 
@@ -20,7 +20,7 @@ func (rubby Rubby) call() {
 	fmt.Println("this is rubby")
 }
 
-func main() {
+func main2() {
 	var animal Animal
 	animal = new(Dog)
 	animal.call()
