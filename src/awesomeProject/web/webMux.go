@@ -1,5 +1,8 @@
 package main
 
+/**
+实现了多路副有
+ */
 import (
 	"net/http"
 	"io"
