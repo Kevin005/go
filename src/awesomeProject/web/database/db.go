@@ -1,70 +1,43 @@
 package main
 
 import (
+	_ "github.com/go-sql-driver/mysql"
 	"database/sql"
 	"fmt"
+	"net/http"
+	"io"
 )
 
+
+func helloHandler(w http.ResponseWriter, req *http.Request) {
+	insertDb()
+	io.WriteString(w, "hello acd")
+}
+
 func main() {
-	db, err := sql.Open("mysql", "root:12345678@/user?charset=utf8")
+
+	// 通过 HandlerFunc 把函数转换成 Handler 接口的实现对象
+	hh := http.HandlerFunc(helloHandler)
+	http.Handle("/xiaoshi", hh)
+	http.ListenAndServe(":8080", nil)
+}
+
+func insertDb(){
+	db, err := sql.Open("mysql", "root:123456@/baidu?charset=utf8")
+	checkErr(err)
+	//插入数据
+	stmt, err := db.Prepare("INSERT t_feedback SET email=?,content=?")
 	checkErr(err)
 
-	// insert
-	stmt, err := db.Prepare("INSERT user_info SET id=?,name=?")
+	res, err := stmt.Exec("研发部门", "2016-03-06")
 	checkErr(err)
 
-	res, err := stmt.Exec(1, "wangshubo")
+	id, err := res.LastInsertId()
 	checkErr(err)
 
-	// update
-	stmt, err = db.Prepare("update user_info set name=? where id=?")
-	checkErr(err)
-
-	res, err = stmt.Exec("wangshubo_update", 1)
-	checkErr(err)
-
-	affect, err := res.RowsAffected()
-	checkErr(err)
-
-	fmt.Println(affect)
-
-	// query
-	rows, err := db.Query("SELECT * FROM user_info")
-	checkErr(err)
-
-	for rows.Next() {
-		var uid int
-		var username string
-
-		err = rows.Scan(&uid, &username)
-		checkErr(err)
-		fmt.Println(uid)
-		fmt.Println(username)
-	}
-
-	// delete
-	stmt, err = db.Prepare("delete from user_info where id=?")
-	checkErr(err)
-
-	res, err = stmt.Exec(1)
-	checkErr(err)
-
-	// query
-	rows, err = db.Query("SELECT * FROM user_info")
-	checkErr(err)
-
-	for rows.Next() {
-		var uid int
-		var username string
-
-		err = rows.Scan(&uid, &username)
-		checkErr(err)
-		fmt.Println(uid)
-		fmt.Println(username)
-	}
+	fmt.Println(id)
 
 	db.Close()
-
 }
 
 func checkErr(err error) {
