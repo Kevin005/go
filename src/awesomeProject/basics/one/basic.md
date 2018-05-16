@@ -3,4 +3,4 @@
 3.Goroutines和Channels  https://docs.hacknode.org/gopl-zh/ch8/ch8.html
 4.goroutine, channel 和 CSP  http://www.moye.me/2017/05/05/go-concurrency-patterns/
 5.匿名函数 , https://www.jianshu.com/p/b64722fc7dfb , https://blog.csdn.net/plc_jianghao/article/details/21548983
-6.
+6.log包  https://studygolang.com/articles/9184
