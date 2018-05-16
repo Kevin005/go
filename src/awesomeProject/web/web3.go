@@ -11,9 +11,9 @@ import (
 )
 
 type Todo struct {
-	Name string
-	Home string
-	Due  time.Time
+	Name string `json:"name"`
+	Home string `json:"home"`
+	Due  time.Time `json:"due"`
 }
 
 type Todos []Todo
