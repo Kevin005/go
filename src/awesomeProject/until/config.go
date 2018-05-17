@@ -1,4 +1,4 @@
-package config
+package until
 
 func LoadConfig() string {
 	return "123"

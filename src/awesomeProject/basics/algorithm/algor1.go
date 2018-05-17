@@ -1,5 +1,6 @@
 package main
 
+//9 9乘法表
 import "fmt"
 
 func main() {
