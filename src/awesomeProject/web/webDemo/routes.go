@@ -13,6 +13,9 @@ type Route struct {
 
 type Routes []Route
 
+/**
+路由集
+ */
 var routes = Routes{
 	Route{
 		"Index",
