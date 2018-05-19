@@ -9,7 +9,7 @@ import (
  */
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(true)
-	//循环设置多个路由
+	//循环加载设置所有路由
 	for _, route := range routes {
 		//var handler http.Handler
 		//handler = route.HandlerFunc
