@@ -1,13 +1,12 @@
 package main
-//https://github.com/go-sql-driver/mysql
+
 import (
-	_ "github.com/go-sql-driver/mysql"
+	_ "github.com/go-sql-driver/mysql" //https://github.com/go-sql-driver/mysql
 	"database/sql"
 	"fmt"
 	"net/http"
 	"io"
 )
-
 
 func helloHandler(w http.ResponseWriter, req *http.Request) {
 	insertDb()
