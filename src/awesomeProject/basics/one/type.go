@@ -1,8 +1,9 @@
 package main
+
 //http://www.infoq.com/cn/news/2017/08/go-1-9-Type-Alias
 import "fmt"
 
-type MyInt1 int
+type MyInt1 int //本身MyInt1被生成为新的类型，类型为int
 type MyInt2 = int
 
 func main() {
