@@ -1,4 +1,4 @@
-package main;
+package main
 
 import "fmt"
 
@@ -48,12 +48,12 @@ func addA(a S) {
 func main() {
 	var s S
 	s.Put(333)
-	fmt.Println(s.Get())//333
+	fmt.Println(s.Get()) //333
 	f1(&s)
-	fmt.Println(s.Get())//888
-	f2(&s)//this is I
-	add(&s)//999
-	fmt.Println(s.Get())//999
-	addA(s)//2222
-	fmt.Println(s.Get())//999
+	fmt.Println(s.Get()) //888
+	f2(&s)               //this is I
+	add(&s)              //999
+	fmt.Println(s.Get()) //999
+	addA(s)              //2222
+	fmt.Println(s.Get()) //999
 }
