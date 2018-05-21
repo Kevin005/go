@@ -7,7 +7,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/jinzhu/gorm"
-	"github.com/Kevin005/go_restful_example/app/model"
+	"go_restful_example/app/model"
 )
 
 func GetAllTasks(db *gorm.DB, w http.ResponseWriter, r *http.Request) {

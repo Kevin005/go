@@ -1,7 +1,8 @@
 package main
+//注释项目地址 https://github.com/mingrammer/go-todo-rest-api-example
 import (
 	"go_restful_example/app"
-	"github.com/Kevin005/go_restful_example/config"
+	"go_restful_example/config"
 )
 
 func main() {
