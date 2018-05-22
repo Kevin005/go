@@ -1,7 +1,8 @@
-package main
+package route
 
 import (
 	"net/http"
+	"awesomeProject/web/restFul/controller"
 )
 
 type Route struct {
@@ -21,24 +22,24 @@ var routes = Routes{
 		"Index",
 		"GET",
 		"/",
-		Index,
+		controller.Index,
 	},
 	Route{
 		"TodoIndex",
 		"GET",
 		"/todos",
-		TodoIndex,
+		controller.TodoIndex,
 	},
 	Route{
 		"TodoShow",
 		"GET",
 		"/todos/{todoId}",
-		TodoShow,
+		controller.TodoShow,
 	},
 	Route{
 		"TodoCreate",
 		"POST",
 		"/todos",
-		TodoCreate,
+		controller.TodoCreate,
 	},
 }

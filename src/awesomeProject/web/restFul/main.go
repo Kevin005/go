@@ -3,9 +3,10 @@ package main
 import (
 	"log"
 	"net/http"
+	"awesomeProject/web/restFul/route"
 )
 
 func main() {
-	router := NewRouter()
+	router := route.NewRouter()
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

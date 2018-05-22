@@ -1,4 +1,4 @@
-package main
+package controller
 
 import (
 	"encoding/json"
@@ -8,6 +8,8 @@ import (
 	"log"
 	"io/ioutil"
 	"io"
+	"awesomeProject/web/restFul/bean"
+	"awesomeProject/web/restFul/dbServe"
 )
 
 func Index(w http.ResponseWriter, r *http.Request) {
@@ -16,9 +18,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	todos := Todos{
-		Todo{Name: "Write presentation"},
-		Todo{Name: "Host meetup"},
+	todos := bean.Todos{
+		bean.Todo{Name: "Write presentation"},
+		bean.Todo{Name: "Host meetup"},
 	}
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	w.WriteHeader(http.StatusOK)
@@ -37,7 +39,7 @@ func TodoShow(w http.ResponseWriter, r *http.Request) {
 }
 
 func TodoCreate(w http.ResponseWriter, r *http.Request) {
-	var todo Todo
+	var todo bean.Todo
 	body, err := ioutil.ReadAll(io.LimitReader(r.Body, 1048576))
 	if err != nil {
 		panic(err)
@@ -53,7 +55,7 @@ func TodoCreate(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	todos := RepoCreateTodo(todo)
+	todos := dbServe.RepoCreateTodo(todo)
 	w.Header().Set("Content-Type", "application/json;   charset=UTF-8")
 	w.WriteHeader(http.StatusCreated)
 	if err := json.NewEncoder(w).Encode(todos); err != nil {

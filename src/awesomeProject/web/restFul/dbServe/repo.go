@@ -1,28 +1,31 @@
-package main
+package dbServe
 
-import "fmt"
+import (
+	"fmt"
+	"awesomeProject/web/restFul/bean"
+)
 
 var currentId int
-
-var todos Todos
+//初始化了一个Todos类型变量
+var todos bean.Todos
 
 // Give us some seed data
 func init() {
-	RepoCreateTodo(Todo{Name: "Write presentation"})
-	RepoCreateTodo(Todo{Name: "Host meetup"})
+	RepoCreateTodo(bean.Todo{Name: "Write presentation"})
+	RepoCreateTodo(bean.Todo{Name: "Host meetup"})
 }
 
-func RepoFindTodo(id int) Todo {
+func RepoFindTodo(id int) bean.Todo {
 	for _, t := range todos {
 		if t.Id == id {
 			return t
 		}
 	}
 	// return empty Todo if not found
-	return Todo{}
+	return bean.Todo{}
 }
 
-func RepoCreateTodo(t Todo) Todos {
+func RepoCreateTodo(t bean.Todo) bean.Todos {
 	currentId += 1
 	t.Id = currentId
 	todos = append(todos, t)
