@@ -2,20 +2,15 @@ package response
 
 import "xiaoshi/app/model"
 
-type RespModel struct {
-	Success string `json:"success"`
-	Message string `json:"message"`
-}
-
 /**
 返回对象
  */
 type RespFeedback struct {
 	RespModel
-	Data respData `json:"data"`
+	Data respFeedbackData `json:"data"`
 }
 
-type respData struct {
+type respFeedbackData struct {
 	Feedback model.Feedbacks `json:"feedback"`
 }
 
@@ -24,9 +19,9 @@ type respData struct {
  */
 type RespFeedbacks struct {
 	RespModel
-	Data respDatas `json:"data"`
+	Data interface{} `json:"data"`
 }
 
-type respDatas struct {
+type RespFeedbackDatas struct {
 	Feedbacks []model.Feedbacks `json:"feedback"`
 }

@@ -38,26 +38,17 @@ func GetAllFeedback(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	respFeedbacks := response.RespFeedbacks{}
 	if checkToken(db, token) {
 		feedbacs := []model.Feedbacks{}
-		db.Find(&feedbacs)
-
-		respFeedbacks.Data.Feedbacks = feedbacs
+		db.First(&feedbacs, "token = ?", token)
+		respFeedbacksData := response.RespFeedbackDatas{}
+		respFeedbacksData.Feedbacks = feedbacs
+		respFeedbacks.Data = respFeedbacksData
 		respFeedbacks.Message = "pass"
 		respFeedbacks.Success = "0"
 		respondJSON(w, http.StatusCreated, respFeedbacks)
 	} else {
 		respFeedbacks.Message = "reject"
 		respFeedbacks.Success = "1"
+		respFeedbacks.Data = "user not found"
 		respondJSON(w, http.StatusInternalServerError, respFeedbacks)
 	}
-}
-
-var statusCode int = 0
-
-func checkToken(db *gorm.DB, token string) bool {
-	//todo
-	statusCode++
-	if statusCode == 5 || statusCode == 10 || statusCode > 15 {
-		return false
-	}
-	return true
 }
