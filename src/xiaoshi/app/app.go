@@ -42,6 +42,8 @@ func (a *App) setRouters() {
 	a.Get("/xiaoshi/avatar/{name}", a.GetAvatar)
 	a.Post("/xiaoshi/user/register", a.Register)
 	a.Post("/xiaoshi/user/login", a.Login)
+	a.Post("/xiaoshi/user/edit_pwd", a.EditPwd)
+	a.Post("/xiaoshi/user/edit", a.EditUserInfo)
 }
 
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
@@ -92,4 +94,18 @@ func (a *App) Register(w http.ResponseWriter, r *http.Request) {
  */
 func (a *App) Login(w http.ResponseWriter, r *http.Request) {
 	handler.Login(a.DB, w, r)
+}
+
+/**
+修改密码
+ */
+func (a *App) EditPwd(w http.ResponseWriter, r *http.Request) {
+	handler.EditPwd(a.DB, w, r)
+}
+
+/**
+修改用户信息
+ */
+func (a *App) EditUserInfo(w http.ResponseWriter, r *http.Request) {
+	handler.EditUserInfo(a.DB, w, r)
 }

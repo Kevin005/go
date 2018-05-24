@@ -11,7 +11,7 @@ import (
 func CreateFeedback(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	token := r.Header.Get("X-AccessToken")
 	respFeedback := response.RespFeedback{}
-	if checkToken(db, token) {
+	if hadToken, _ := checkToken(db, token); hadToken {
 		feedback := model.Feedbacks{}
 		decoder := json.NewDecoder(r.Body)
 		if err := decoder.Decode(&feedback); err != nil {
@@ -36,7 +36,7 @@ func CreateFeedback(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 func GetAllFeedback(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	token := r.Header.Get("X-AccessToken")
 	respFeedbacks := response.RespFeedbacks{}
-	if checkToken(db, token) {
+	if hadToken, _ := checkToken(db, token); hadToken {
 		feedbacs := []model.Feedbacks{}
 		db.First(&feedbacs, "token = ?", token)
 		respFeedbacksData := response.RespFeedbackDatas{}
