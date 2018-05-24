@@ -36,14 +36,19 @@ func (a *App) Run(host string) {
 }
 
 func (a *App) setRouters() {
+	/** 意见反馈 */
 	a.Post("/xiaoshi/feedback", a.CreateFeedback)
 	a.Get("/xiaoshi/feedback", a.GetAllFeedback)
+	/** 用户 */
 	a.Post("/xiaoshi/avatar", a.UploadAvatar)
 	a.Get("/xiaoshi/avatar/{name}", a.GetAvatar)
 	a.Post("/xiaoshi/user/register", a.Register)
 	a.Post("/xiaoshi/user/login", a.Login)
 	a.Post("/xiaoshi/user/edit_pwd", a.EditPwd)
 	a.Post("/xiaoshi/user/edit", a.EditUserInfo)
+	/** 书籍 */
+	a.Post("/xiaoshi/book", a.CreateBook)
+	a.Get("/xiaoshi/books/{user_id}", a.getMyBooks)
 }
 
 func (a *App) Get(path string, f func(w http.ResponseWriter, r *http.Request)) {
@@ -108,4 +113,18 @@ func (a *App) EditPwd(w http.ResponseWriter, r *http.Request) {
  */
 func (a *App) EditUserInfo(w http.ResponseWriter, r *http.Request) {
 	handler.EditUserInfo(a.DB, w, r)
+}
+
+/**
+发布一本书
+ */
+func (a *App) CreateBook(w http.ResponseWriter, r *http.Request) {
+	handler.CreateBook(a.DB, w, r)
+}
+
+/**
+获取我所有在读的书
+ */
+func (a *App) getMyBooks(w http.ResponseWriter, r *http.Request) {
+	handler.GetMyBooks(a.DB, w, r)
 }
