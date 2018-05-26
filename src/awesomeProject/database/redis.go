@@ -16,11 +16,11 @@ func main() {
 	defer c.Close()
 
 	// 写入值10S后过期
-	_, err = c.Do("SET", "password", "123456", "EX", "10")
+	_, err = c.Do("SET", "password", "123456", "EX", "5")
 	if err != nil {
 		fmt.Println("redis set failed:", err)
 	}
-	time.Sleep(11 * time.Second)
+	time.Sleep(6 * time.Second)
 	password, err := redis.String(c.Do("GET", "password"))
 	if err != nil {
 		fmt.Println("redis get failed:", err)
