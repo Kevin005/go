@@ -2,10 +2,12 @@ package handler
 
 /**
 教程 https://blog.csdn.net/wangshubo1989/article/details/75050024
-获取包 go get github.com/garyburd/redigo/redis
+github地址  https://github.com/gomodule/redigo
+获取包 go get github.com/gomodule/redigo/redis
+注意 https://github.com/garyburd/redigo只是快照，项目已经迁移
  */
 import (
-	"github.com/garyburd/redigo/redis"
+	"github.com/gomodule/redigo/redis"
 
 	"fmt"
 )
