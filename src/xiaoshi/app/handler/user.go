@@ -19,6 +19,8 @@ func Register(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
+	//设置到redis
+	setTokenToCache(user.Token)
 	respUser := response.RespUser{}
 	respUser.Data = user
 	respUser.Message = "pass"
@@ -35,6 +37,8 @@ func Login(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 	}
 	defer r.Body.Close()
 	if hadToken, _ := checkToken(db, user.Token); hadToken {
+		//设置到redis
+		setTokenToCache(user.Token)
 		db.First(&user, "token = ?", user.Token)
 		respUserData := response.RespUserData{}
 		respUserData.User = user
