@@ -29,7 +29,7 @@ func main() {
 	http.Handle("/", http.FileServer(http.Dir("./public")))
 
 	// Configure websocket route
-	http.HandleFunc("/ws", handleConnections)
+	http.HandleFunc("/ws", handleConnections)//WebSocket请求，会实现把http切换为WebSocket
 
 	// Start listening for incoming chat messages
 	go handleMessages()
@@ -42,6 +42,10 @@ func main() {
 	}
 }
 
+/**
+1.每当一个浏览器client发起：9090/ws请求时，都会建立一个ws连接,
+然后for里边只要有，任何一个client读到了msg就会给broadcast然后，通过range clients 发送给所有的client
+ */
 func handleConnections(w http.ResponseWriter, r *http.Request) {
 	// Upgrade initial GET request to a websocket
 	ws, err := upgrader.Upgrade(w, r, nil)
@@ -52,14 +56,14 @@ func handleConnections(w http.ResponseWriter, r *http.Request) {
 	defer ws.Close()
 
 	// Register our new client
-	clients[ws] = true
+	clients[ws] = true //把新的请求端加入到clients cache中去，以后发送数据会同事发给clients cache中所有的client
 
 	for {
 		var msg Message
 		// Read in a new message as JSON and map it to a Message object
-		err := ws.ReadJSON(&msg)
-		if err != nil {
-			log.Printf("error: %v", err)
+		err := ws.ReadJSON(&msg)//但连接建立后，每当有client消息时，都会在这里ws中拿到
+		if err != nil {//WebSocket已经结束
+			log.Printf("error1: %v", err)
 			delete(clients, ws)
 			break
 		}
@@ -75,8 +79,8 @@ func handleMessages() {
 		// Send it out to every client that is currently connected
 		for client := range clients {
 			err := client.WriteJSON(msg)
-			if err != nil {
-				log.Printf("error: %v", err)
+			if err != nil {//WebSocket已经结束
+				log.Printf("error2: %v", err)
 				client.Close()
 				delete(clients, client)
 			}
