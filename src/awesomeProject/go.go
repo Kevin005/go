@@ -1,18 +1,31 @@
 package main
+
 import (
-	"os"
-	"github.com/sirupsen/logrus"
+	"fmt"
+	"time"
 )
-// 你可以创建很多instance
-var log = logrus.New()
+
 func main() {
-	file, err := os.OpenFile("logrus.log", os.O_CREATE|os.O_WRONLY, 0666)
-	if err == nil {
-		log.Out = file
-	} else {
-		log.Info("Failed to log to file, using default stderr")
+	fmt.Println("Hello, 世界")
+	loopWorker()
+}
+
+func loopWorker() {
+	i := 0
+	ticker := time.NewTicker(7 * time.Second)
+	defer ticker.Stop()
+	for {
+		select {
+		case <-ticker.C:
+			// 执行我们想要的操作
+			i++
+			//doxx(i)
+			fmt.Println(i)
+		}
 	}
-	log.WithFields(logrus.Fields{
-		"filename": "123.txt",
-	}).Info("打开文件失败")
+}
+
+func doxx(i int) {
+	time.Sleep(7 * time.Second) // --- B
+	fmt.Println("aaa", i, time.Now().Unix())
 }
