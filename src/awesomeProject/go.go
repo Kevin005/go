@@ -1,31 +1,19 @@
 package main
 
-import (
-	"fmt"
-	"time"
-)
+import "fmt"
 
-func main() {
-	fmt.Println("Hello, 世界")
-	loopWorker()
+func main(){
+	slice := make([]int, 3, 5)
+	fmt.Println("before:", slice)
+	changeSliceMember(slice)
+	fmt.Println("after:", slice)
 }
 
-func loopWorker() {
-	i := 0
-	ticker := time.NewTicker(7 * time.Second)
-	defer ticker.Stop()
-	for {
-		select {
-		case <-ticker.C:
-			// 执行我们想要的操作
-			i++
-			//doxx(i)
-			fmt.Println(i)
-		}
+func changeSliceMember(slice []int) {
+	if len(slice) > 1 {
+		slice[0] = 9
 	}
-}
-
-func doxx(i int) {
-	time.Sleep(7 * time.Second) // --- B
-	fmt.Println("aaa", i, time.Now().Unix())
+	aaa := append(slice,3,4)
+	aaa[4] = 5
+	fmt.Println(aaa)
 }
