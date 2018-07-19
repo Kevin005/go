@@ -36,6 +36,7 @@ func main() {
 	fmt.Println(myNodeInfo)
 }
 
+//补充：实际使用中unsafe可用场景很少，稍微复杂一点的结构，比如struct,unsafe根本不能适用，正确的方法还是要靠 type assertion
 // MyTemplate 定义和 template.Template 只是形似
 type MyTemplate struct {
 	name       string
