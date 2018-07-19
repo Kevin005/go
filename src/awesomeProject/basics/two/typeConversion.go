@@ -30,6 +30,19 @@ func main() {
 		"1",
 		false,
 	}
+
+	//nodeInfos := []*NodeInfo{
+	//	{
+	//		"123456",
+	//		"123456",
+	//		true,
+	//	},
+	//	{
+	//		"123456",
+	//		"123456",
+	//		true,
+	//	},
+	//}
 	myNodeInfo = (*MyNodeInfo)(unsafe.Pointer(nodeInfo))
 	fmt.Println(myNodeInfo)    //说明已经从NodeInfo转为MyNodeInfo类型了
 	myNodeInfo = &MyNodeInfo{} //说明已经从NodeInfo转为MyNodeInfo类型了
@@ -46,7 +59,7 @@ type MyTemplate struct {
 	rightDelim string
 }
 
-func main() {
+func main1() {
 	t := template.New("Foo")
 	p := (*MyTemplate)(unsafe.Pointer(t))
 	p.name = "Bar" // 关键在这里，突破私有成员
