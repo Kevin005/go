@@ -1,4 +1,4 @@
-package channel
+package main
 
 func eFuction() {
 	ch := make(chan int, 5)
