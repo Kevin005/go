@@ -9,4 +9,9 @@ func main() {
 	log4go.Debug("这是DEBUG日志")                                                        // 输出测试
 	log4go.Info("这是INFO日志")                                                          // 输出测试
 	log4go.Info("这是INFO日志")                                                          // 输出测试
+	log4go.Info("这是INFO日志")                                                          // 输出测试
+	log4go.Info("这是INFO日志")                                                          // 输出测试
+	log4go.Info("fdsafdsafdsafds")                                                          // 输出测试
+
+	panic("")
 }
