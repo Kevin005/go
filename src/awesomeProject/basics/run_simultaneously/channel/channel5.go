@@ -1,4 +1,4 @@
-package channel
+package main
 
 var (
 	ch    = make(chan int, 20) //可以同时运行的routine数量为20

@@ -1,4 +1,4 @@
-package channel
+package main
 
 //func cfunction(ch chan int) {
 //	fmt.Println("finish")
