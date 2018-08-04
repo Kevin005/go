@@ -25,6 +25,7 @@ func (a *App) Initialize(config *util.Config) {
 	db, err := gorm.Open(config.DB.Dialect, dbURI)
 	if err != nil {
 		log.Fatal(err)
+		return
 	}
 	a.DB = model.DBMigrate(db)
 	a.Router = mux.NewRouter()

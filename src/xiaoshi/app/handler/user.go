@@ -6,6 +6,7 @@ import (
 	"xiaoshi/app/model/response"
 	"xiaoshi/app/model"
 	"encoding/json"
+	"time"
 )
 
 func Register(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
@@ -15,6 +16,7 @@ func Register(db *gorm.DB, w http.ResponseWriter, r *http.Request) {
 		respondError(w, http.StatusBadRequest, err.Error())
 	}
 	defer r.Body.Close()
+	user.CreateTime = time.Now().Unix()
 	if err := db.Save(&user).Error; err != nil {
 		respondError(w, http.StatusInternalServerError, err.Error())
 		return
