@@ -1,0 +1,11 @@
+syntax = "proto3";
+package pb;
+option java_package = "com.example.tutorial";
+option java_outer_classname = "TestMessage";
+
+message Test {
+     string label = 1;
+     int32 type = 2 ;
+     int64 reps = 3;
+
+}

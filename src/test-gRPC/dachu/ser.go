@@ -1,4 +1,4 @@
-package test_gRPC
+package main
 
 import (
     "io"
@@ -6,8 +6,9 @@ import (
     "net"
     "strconv"
     "google.golang.org/grpc"
-    proto "./pb" // 自动生成的 proto代码
+    proto "test-gRPC/dachu/proto" // 自动生成的 proto代码
 )
+
 // Streamer 服务端
 type Streamer struct{}
 // BidStream 实现了 ChatServer 接口中定义的 BidStream 方法
@@ -57,15 +58,19 @@ func (s *Streamer) BidStream(stream proto.Chat_BidStreamServer) error {
         }
     }
 }
+
 func main() {
     log.Println("启动服务端...")
+    //找到一部电话
     server := grpc.NewServer()
-    // 注册 ChatServer
+    // 注册 ChatServer，注册通信服务器然后具体服务绑定并下发到&Streamer{}业务员对象上，&Streamer{}实现了具体业务
+    //server相当于代理，具体业务在&Streamer{}上
     proto.RegisterChatServer(server, &Streamer{})
     address, err := net.Listen("tcp", ":3000")
     if err != nil {
         panic(err)
     }
+    //代理服务绑定具体电话号码，并开始监听来电，来电具体业务下发到&Streamer{}对象上
     if err := server.Serve(address); err != nil {
         panic(err)
     }
