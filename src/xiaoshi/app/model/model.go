@@ -3,7 +3,6 @@ package model
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"time"
 )
 
 type Model struct {
@@ -19,7 +18,7 @@ type Feedbacks struct {
 
 type Users struct {
 	Model
-	CreateTime  time.Time `json:"create_time"`
+	CreateTime  int64 `json:"create_time"`
 	UserName    string    `json:"user_name"`
 	NickName    string    `json:"nick_name"`
 	PhoneNumber string    `json:"phone_number"`
@@ -30,7 +29,7 @@ type Users struct {
 
 type Books struct {
 	Model
-	CreateTime time.Time `json:"create_time"`
+	CreateTime int64 `json:"create_time"`
 	BookName   string    `json:"book_name"`
 	Author     string    `json:"author"`
 	Publisher  string    `json:"publisher"`
@@ -48,7 +47,7 @@ type MyBooks struct {
 
 type Posts struct {
 	Model
-	PostTime time.Time `json:"post_time"`
+	PostTime int64 `json:"post_time"`
 	UserId   uint      `json:"user_id"`
 	MyBookId uint      `json:"my_book_id"`
 	Title    string    `json:"title"`
