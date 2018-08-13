@@ -1,0 +1,19 @@
+{
+  "NInfo": {
+    "Mode": "2",
+    "Domain": "Node-peer-to-peer-2"
+  },
+  "BootNodeIP": "127.0.0.1:9087",
+  "GrpcServerAddress": ":3001",
+  "ResponseTimeOutDuration": 1200,
+  "PrivateKeyUuid": "123456",
+  "PassPhrase": "101",
+  "KeystorePath": "/Users/wangzl/ether/data0/keystore/UTC--2018-03-12T02-01-36.057683381Z--f3572186506dd3dc8a328a8a0e3f900b68bc87f2",
+  "MysqlPath": "root:wangzl@tcp(127.0.0.1:3306)/demo?charset=utf8&parseTime=True&loc=Local",
+  "EtherURL": "ws://127.0.0.1:8546",
+  "Retries": 0,
+  "DelayedBlocks": 2,
+  "CursorBlocks": 0,
+  "BlockNoFilePath": "/Users/wangzl/Work/src/github.com/threebox/companion-node/block.txt",
+  "NonceFilePath": "/Users/wangzl/Work/src/github.com/threebox/companion-node/nonce.txt"
+}
